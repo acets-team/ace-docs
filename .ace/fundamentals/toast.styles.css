@@ -1,0 +1,134 @@
+/**
+ * 🧚‍♀️ How to access:
+ *     - import '@ace/toast.styles.css'
+ */
+
+
+#ace-toast-wrapper {
+  pointer-events: none;
+  position: fixed;
+  top: 0.9rem;
+  width: 45rem;
+  left: 50%;
+  margin-left: -22.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: visible;
+  z-index: 999;
+
+  .toast {
+    pointer-events: auto;
+    overflow: hidden;
+    margin-bottom: 0.9rem;
+    padding: 1.2rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    color: var(--ace-toast-text-color);
+    border: var(--ace-toast-border, none);
+    background: var(--ace-toast-bg);
+    animation: toast-animation 0.9s;
+    transition: var(--ace-toast-transition, all 0.6s ease);
+    max-width: calc(100vw - 3rem);
+    box-shadow: var(--ace-toast-box-shadow, none);
+    &:focus {
+      outline: none;
+    }
+
+    ul, span {
+      flex: auto;
+    }
+
+    ul {
+      padding: 0;
+      margin: 0 0 0 1.8rem;
+
+      li {
+        margin: 0.3rem 0;
+      }
+    }
+
+    .icon-wrapper {
+      flex-grow: 0;
+      flex-shrink: 0;
+      width: 3.6rem;
+      height: 3.6rem;
+      min-width: 3.6rem;
+      min-height: 3.6rem;
+      margin-right: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border-radius:0.9rem;
+        flex-grow: 0;
+        flex-shrink: 0;
+        width: 3.6rem;
+        min-width: 3.6rem;
+        height: 3.6rem;
+        min-height: 3.6rem;
+        color: var(--ace-toast-icon-color);
+        border: var(--ace-toast-icon-color);
+        background: var(--ace-toast-icon-bg);
+
+        svg {
+          flex-grow: 0;
+          flex-shrink: 0;
+          width: 2.4rem;
+          min-width: 2.4rem;
+          height: 2.4rem;
+          min-height: 2.4rem;
+        }
+      }
+    }
+
+    .close {
+      background-color: transparent;
+      border-radius: 50%;
+      color: var(--ace-toast-close-color);
+      transition: all 0.15s;
+      margin: 0 0 0 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-grow: 0;
+      flex-shrink: 0;
+      height: 2.97rem;
+      min-height: 2.97rem;
+      width: 2.97rem;
+      min-width: 2.97rem;
+      border: none;
+      &:hover {
+        cursor: pointer;
+        background-color: var(--ace-toast-close-hover-bg);
+        box-shadow: var(--ace-toast-close-hover-box-shadow, none);
+      }
+
+      svg {
+        flex-grow: 0;
+        flex-shrink: 0;
+        width: 1.8rem;
+        min-width: 1.8rem;
+        height: 1.8rem;
+        min-height: 1.8rem;
+      }
+    }
+  }
+}
+
+@keyframes toast-animation {
+  0% {
+    opacity: 0;
+    transform: translateY(-9rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "name": "ace-docs",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "ace build local && ace sw && vinxi dev",
+    "dev-fresh": "rm -rf .ace && npm run dev",
+    "build": "ace build prod && ace sw && vinxi build",
+    "typesafe": "tsc --project tsconfig.typesafe.json",
+    "bump": "ace build local && ace sw",
+    "db:local": "turso dev --db-file ./src/db/local.db",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "npx drizzle-kit studio",
+    "db:push": "ace build prod && npm run db:migrate && ace build local"
+  },
+  "devDependencies": {
+    "@highlightjs/cdn-assets": "^11.11.1",
+    "@libsql/client": "^0.15.15",
+    "@lottiefiles/dotlottie-web": "^0.57.0",
+    "@mdit/plugin-container": "^0.22.2",
+    "@solidjs/meta": "^0.29.4",
+    "@solidjs/router": "^0.15.3",
+    "@solidjs/start": "^1.2.0",
+    "@types/markdown-it": "^14.1.2",
+    "@types/node": "^24.10.0",
+    "drizzle-kit": "^0.31.7",
+    "drizzle-orm": "^0.44.7",
+    "highlight.js": "^11.11.1",
+    "markdown-it": "^14.1.0",
+    "solid-js": "^1.9.10",
+    "typescript": "^5.9.3",
+    "valibot": "^1.2.0",
+    "vinxi": "^0.5.8"
+  }
+}

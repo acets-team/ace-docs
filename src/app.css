@@ -1,0 +1,326 @@
+@import '@highlightjs/cdn-assets/styles/github-dark.min.css';
+
+:root {
+  --space: 3rem;
+  --space-lite: 1.5rem;
+  --space-big: 4.5rem;
+  --transition: all 0.3s ease-in-out;
+  --prop-transition: 0.3s ease-in-out;
+  --text-color: #cfdcf7;
+  --gold: #eac603;
+  --code-blue: #79c0ff;
+  --main-max-width: 132rem;
+  --code-color: linear-gradient(90deg, #6ee7fe, #8fecfd);
+  --gold-gradient: linear-gradient(90deg, #fbd966, #fcd703, #fbd966);
+  --anchor-underline: linear-gradient(90deg, #fbd966, #fcd703, #fbd966);
+  --bg: radial-gradient(at top left, #010a29 0%, #000f27 50%, #1c2130 100%);
+  --purple-card-bg: linear-gradient(to bottom right, rgb(7 17 57), rgb(29 19 51));
+  --card-bg: linear-gradient(to bottom right, rgb(0 22 26), rgba(10, 10, 20, 0.9));
+  --rainbow: red, yellow, orange, green, blue, violet, red;
+  --card-box-shadow:
+    0 2px 10px rgba(234, 198, 3, 0.08),
+    0 4px 20px rgba(234, 198, 3, 0.05),
+    inset 0 1px 2px rgba(255, 255, 255, 0.08),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.35);
+
+  --z-body: 0;
+  --z-body-orb: 9;
+  --z-content: 18;
+  --z-higher-content: 27;
+  --z-nav-spoof: 36;
+  --z-nav: 45;
+  --z-nav-content: 54;
+  --z-nav-higher-content: 63;
+
+  /* 660px: Nav icons Hide */
+  /* 810px: Aside Left Fixed */
+  /* 930px: Aside Right Hide */
+  /* 930px: Aside Left Sections Toggle */
+  /* 1111px: Hero Code Horizontal */
+}
+
+@font-face {
+  font-family: 'Geist';
+  src: url('/fonts/Geist.ttf') format('truetype');
+  font-weight: 100 900; /* Adjust according to the font's weights */
+  font-style: normal;
+}
+
+@keyframes good-rising {
+  from {
+    opacity: 0;
+    transform: translateY(0.6rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes orb-spin {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes spin-rectangle-rainbow {
+  from {
+    /* Start at 0 degrees, keeping centering and GPU fix */
+    transform: translate(-50%, -50%) rotate(0deg) translateZ(0);
+  }
+
+  to {
+    /* End at 360 degrees, keeping centering and GPU fix */
+    transform: translate(-50%, -50%) rotate(360deg) translateZ(0);
+  }
+}
+
+@keyframes spin-circle-rainbow {
+  from {
+    /* No translation needed if element is not centered using transform */
+    transform: rotate(0deg) translateZ(0);
+  }
+
+  to {
+    transform: rotate(360deg) translateZ(0);
+  }
+}
+
+body,
+html,
+#app {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-family: "Geist", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 62.5%;
+  background-color: #000f27;
+}
+
+body,
+input,
+button {
+  font-size: 1.8rem;
+  line-height: 1.41;
+  color: var(--text-color);
+}
+
+body {
+  background: var(--bg);
+  position: relative;
+  z-index: var(--z-body);
+  overflow-x: hidden;
+  margin: 0;
+  min-height: 100vh;
+  padding-top: 7.8rem;
+  &::before,
+  &::after {
+    content: "";
+    position: fixed;
+    z-index: var(--z-body-orb);
+    pointer-events: none;
+    border-radius: 50%;
+    z-index: 0;
+    opacity: 0.15; /** orb opacity */
+    filter: blur(100px); /** blur creates glow */
+  }
+  &::before { /* top left orb */
+    top: -20%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    animation: orb-spin 45s linear infinite;
+    background: conic-gradient(from 60deg, var(--rainbow)); /** ranbow wheel */
+  }
+  &::after { /* bottom right orb */
+    bottom: -15%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    animation: orb-spin 60s linear infinite reverse;
+    background: conic-gradient(from 0deg, var(--rainbow)); /** ranbow wheel */
+  }
+}
+
+
+body * {
+  box-sizing: border-box;
+}
+
+#app {
+  padding: var(--space-lite);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.ace-tabs.variant-tron {
+  .tab {
+    background: var(--card-bg);
+
+    &.active,
+    &:hover,
+    &.aware {
+      color: white !important;
+    }
+  }
+}
+
+a.brand,
+button.brand {
+  color: #000;
+  background: var(--gold);
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.9rem 1.5rem;
+  display: inline-block;
+  border: none;
+  --tron-border-radius: 4.5rem;
+  transition: var(--transition);
+  user-select: none;
+  cursor: pointer;
+  touch-action: manipulation; /* Prevent zoom on mobile double-tap */
+  box-shadow:
+    0 4px 18px rgba(245, 197, 24, 0.21),
+    inset 0 1px 3px rgba(255, 255, 255, 0.35),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.55);
+  &:disabled {
+    cursor: default;
+    opacity: 0.7;
+  }
+  &:hover {
+    text-decoration: none;
+  }
+  &.default {
+    background: #1b1f27;
+    color: var(--text-color);
+    box-shadow:
+      0 3px 12px rgba(77, 83, 40, 0.4),
+      inset 0 1px 2px rgba(255, 255, 255, 0.06),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.45);
+  }
+}
+
+.tron.brand {
+  --tron-border-radius: 4.5rem;
+}
+
+.tron.brand:not(.default) {
+  --tron-colors: transparent, transparent, var(--gold);
+}
+
+pre.hljs {
+  background: transparent;
+  font-size: 1.71rem;
+  overflow: auto;
+}
+
+code {
+  font-size: 90%;
+}
+
+a,
+input,
+button {
+  border: none;
+  outline: none;
+}
+
+:not(pre) > code {
+  background-image: var(--code-color);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  word-spacing: -0.45rem;
+}
+
+.browser {
+  border-radius: 1.5rem;
+  background: var(--card-bg);
+  box-shadow:
+    0 4px 18px rgba(245, 197, 24, 0.27),
+    0 0 80px rgba(234, 198, 3, 0.12),
+    0 0 150px rgba(234, 198, 3, 0.06),
+    inset 0 1px 3px rgba(255, 255, 255, 0.35),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.55);
+
+  .tabs {
+    transform: translateX(7.5rem);
+    width: calc(100% - 7.5rem);
+  }
+
+  .dots {
+    display: flex;
+    gap: 0.6rem;
+    width: 5.4rem;
+    transform: translate(1.53rem, 2.7rem);
+
+    .dot {
+      width: 1.2rem;
+      height: 1.2rem;
+      border-radius: 50%;
+
+      &:nth-child(1) {
+        background-color: #ff5e57;
+      }
+
+      &:nth-child(2) {
+        background-color: #ffbb2c;
+      }
+
+      &:nth-child(3) {
+        background-color: #27c83e;
+      }
+    }
+  }
+
+  pre.hljs {
+    margin: 1.5rem 0 0 0;
+    padding: 0 var(--space-lite) var(--space-lite) var(--space-lite)
+  }
+}
+
+a code,
+a:not(.brand):not(.no-underline) {
+  position: relative;
+  z-index: var(--z-content);
+  text-decoration: none;
+  transition: var(--transition);
+
+  background: var(--gold-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: var(--z-content);
+    left: 0;
+    bottom: -0.3rem;
+    height: 0.15rem;
+    background: var(--anchor-underline);
+    width: 0;
+    transition: var(--transition);
+  }
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+.no-opacity {
+  opacity: 0;
+}
+
+.good-rising {
+  animation: good-rising 0.6s ease;
+}

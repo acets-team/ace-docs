@@ -1,0 +1,7 @@
+# robots.txt for Create Ace App
+
+User-agent: *
+
+Allow: /
+
+Disallow: /sw.js

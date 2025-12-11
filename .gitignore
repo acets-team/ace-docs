@@ -1,0 +1,8 @@
+.env
+.vinxi
+.output
+node_modules
+app.config.timestamp*
+src/db/local.db
+src/db/local.db-shm
+src/db/local.db-wal

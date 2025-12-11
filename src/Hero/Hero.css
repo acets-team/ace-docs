@@ -1,0 +1,232 @@
+.hero {
+  width: 100%;
+  max-width: var(--main-max-width);
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  min-height: 45rem;
+  margin-bottom: var(--space-lite);
+
+  @media only screen and (min-width: 1111px) { /* big screen */
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;
+  }
+
+  .browser {
+    width: 100%;
+    transition: var(--transition);
+
+    @media only screen and (min-width: 1111px) { /* big screen */
+      width: 57rem;
+    }
+
+    @media only screen and (min-width: 1170px) { /* big screen */
+      width: 60rem;
+    }
+
+    @media only screen and (min-width: 1290px) { /* big screen */
+      width: 62.1rem;
+    }
+
+    @media only screen and (min-width: 1320px) { /* big screen */
+      width: 65.1rem;
+    }
+
+    @media only screen and (min-width: 1350px) { /* big screen */
+      width: 68.1rem;
+    }
+
+    @media only screen and (min-width: 1380px) { /* big screen */
+      width: 71.1rem;
+    }
+  }
+
+  .hero-support {
+    flex: 1;
+    &.atoms {
+      table {
+        th {
+          text-align: left;
+          padding-bottom: 0.3rem;
+        }
+    
+        tr th:not(:first-child),
+        tr td:not(:first-child) {
+          text-align: center;
+        }
+
+        td {
+          padding: 0.3rem 0;
+        }
+      }
+    }
+    &.Live {
+      table {
+
+        th,
+        td {
+          padding: 0.6rem;
+        }
+    
+        th:nth-child(3) {
+          text-align: right;
+        }
+        
+        th:nth-child(2) {
+          text-align: left;
+        }
+        
+        td:first-child,
+        td:nth-child(3) {
+          text-align: right;
+        }
+        
+        td:nth-child(2) {
+          text-align: left;
+        }
+      }
+    }
+
+    table {
+      width: 100%;
+
+      th,
+      td {
+        border-bottom: 1px solid #ffffff1c;
+      }
+    }
+
+    .table-scroll {
+      max-height: 516px;
+      overflow: auto;
+    }
+
+    .ace-lottie-wrapper {
+      width: 100%;
+      pointer-events: none;
+      &.sun-breathe {
+        aspect-ratio: 594 / 222;
+        margin: -3.6rem 0;
+      }
+      &.robot-work {
+        aspect-ratio: 1072 / 574;
+        margin: -1.8rem 0 -3.6rem 0;
+      }
+      &.lady-meditate {
+        aspect-ratio: 1713 / 856;
+        margin: -4.8rem 0 -3.6rem 0;
+      }
+      &.bros-workin {
+        aspect-ratio: 1003 / 501;
+        margin: -2.9rem 0 -1rem -24px;
+      }
+      &.flying {
+        aspect-ratio: 579 / 231;
+
+        .ace-lottie {
+          width: 80%;
+        }
+      }
+
+      .ace-lottie {
+        width: 99%;
+        display: block;
+        margin: 0 auto;
+      }
+    }
+
+    h1,
+    h3 {
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 6rem;
+      min-height: 9rem;
+      line-height: 1.3;
+      font-weight: 700;
+      margin: 0.9rem 0 1.8rem 0;
+      transition: var(--transition);
+
+      background: var(--gold-gradient);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      @media only screen and (min-width: 1100px) { /* big screen */
+        font-size: 5.2rem;
+      }
+
+      @media only screen and (min-width: 1140px) { /* big screen */
+        font-size: 5.5rem;
+      }
+
+      @media only screen and (min-width: 1170px) { /* big screen */
+        font-size: 5.7rem;
+      }
+
+      @media only screen and (min-width: 1200px) { /* big screen */
+        font-size: 6rem;
+      }
+
+      @media only screen and (min-width: 1230px) { /* big screen */
+        font-size: 6.3rem;
+      }
+
+      @media only screen and (min-width: 1260px) { /* big screen */
+        font-size: 6.5rem;
+      }
+
+      @media only screen and (min-width: 1290px) { /* big screen */
+        font-size: 6.7rem;
+      }
+
+      @media only screen and (min-width: 1320px) { /* big screen */
+        font-size: 6.9rem;
+      }
+    }
+
+    h3 {
+      @media only screen and (max-width: 1111px) { /* big screen */
+        font-size: 138%;
+      }
+    }
+
+    ul p {
+      margin-bottom: 0.6rem;
+    }
+
+    .text {
+      line-height: 1.5;
+      margin-top: 0.5rem;
+
+      .p {
+        margin-top: 1.2rem;
+      }
+    }
+
+    pre {
+      display: inline;
+      color: var(--code-blue);
+    }
+  }
+
+  .buttons {
+    display: flex;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+
+    .brand {
+      white-space: nowrap;
+    }
+  }
+
+  .ace-tabs .tabs .tab {
+    background: var(--card-bg);
+    &.awareSpeed {
+      transition: all 1.5s;
+    }
+  }
+}

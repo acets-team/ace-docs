@@ -1,0 +1,26 @@
+/**
+ * 🧚‍♀️ How to access:
+ *     - import '@ace/carousel.styles.css'
+ */
+
+.ace-carousel {
+  overflow: hidden;
+}
+
+.ace-carousel .loops {
+  display: flex;
+  overflow-x: scroll;
+  touch-action: pan-x pan-y;
+  scroll-behavior: auto;
+  width: 100%;
+  scrollbar-width: none;
+}
+
+.ace-carousel .loops::-webkit-scrollbar {
+  display: none;
+}
+
+.ace-carousel .loop {
+  display: flex;
+  flex-shrink: 0;
+}

@@ -1,0 +1,10 @@
+{
+  "name": "ace-docs",
+  "compatibility_date": "2025-11-10",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "observability": {
+    "enabled": true
+  }
+}

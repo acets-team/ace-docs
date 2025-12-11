@@ -1,0 +1,41 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1765489492333,
+      "tag": "0000_modern_gravity",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1765489616772,
+      "tag": "0001_create_posts_fts",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1765490000387,
+      "tag": "0002_create_posts_ai",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1765490036261,
+      "tag": "0003_create_posts_au",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1765490070567,
+      "tag": "0004_create_posts_ad",
+      "breakpoints": true
+    }
+  ]
+}

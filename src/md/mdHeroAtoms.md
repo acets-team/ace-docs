@@ -2,6 +2,7 @@
 
 Atoms are `app-wide` available `signals`, that include a `save` prop, which sets the Atom's save location to `memory`, `session storage`, `local storage` or `index db`! 💾
 
+:::table-atoms
 | Feature                    | m     | ss     | ls     | idb   |
 | ---------------------------| ------| ------ | -------| ------|
 | Available in Any Component | ✅    | ✅      | ✅     | ✅    |
@@ -11,3 +12,4 @@ Atoms are `app-wide` available `signals`, that include a `save` prop, which sets
 | Share Across Tabs          | ❌    | ❌      | ✅     | ✅    |
 | Supports Async             | ❌    | ❌      | ❌     | ✅    |
 | Size Limit                 | v8Max | 5–10MB | 5–10MB | 100MB |
+:::

@@ -19,7 +19,7 @@ export async function resolver(req: ApiInfo2Req<typeof info>) {
       for (let i = 0; i < 18; i++) {
         companies.push({
           id: i + 1,
-          company: `Company ${i + 1}`,
+          company: `Partner ${i + 1}`,
           description: loremWords(8),
         })
       }

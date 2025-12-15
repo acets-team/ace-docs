@@ -6,6 +6,7 @@ import { useStore } from '@src/store/store'
 import apiGetPost from '@src/api/apiGetPost'
 import RootLayout from '@src/app/RootLayout'
 import { AceMarkdown } from '@ace/aceMarkdown'
+import { container } from '@mdit/plugin-container'
 import { registerHljs } from '@src/init/registerHljs'
 import { hljsMarkdownItOptions } from '@ace/hljsMarkdownItOptions'
 
@@ -16,7 +17,7 @@ export default new Route('/post/:slug')
     pathParams: { slug: vString() }
   }))
   .component((scope) => {
-    const {set} = useStore()
+    const baseStore = useStore()
 
     const post = new Load({
       fn: apiGetPost,
@@ -29,8 +30,11 @@ export default new Route('/post/:slug')
         <AceMarkdown
           content={d?.content}
           registerHljs={registerHljs}
-          setHeadings={(v) => set('headings', v)}
-          markdownItOptions={ { highlight: hljsMarkdownItOptions }} />
+          setHeadings={(v) => baseStore.set('headings', v)}
+          markdownItOptions={ { highlight: hljsMarkdownItOptions }}
+          configPlugins={(md) => {
+            md.use(container, { name: 'table-atoms' })
+          }} />
       </>} />
     </>
   })

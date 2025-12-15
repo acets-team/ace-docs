@@ -1,12 +1,12 @@
 .hero {
   width: 100%;
-  max-width: var(--main-max-width);
+  max-width: var(--ace-content-max-width);
   margin-top: 4rem;
   display: flex;
   flex-direction: column;
   gap: 3rem;
   min-height: 45rem;
-  margin-bottom: var(--space-lite);
+  margin-bottom: var(--ace-spacing-sm);
 
   @media only screen and (min-width: 1111px) { /* big screen */
     flex-direction: row;
@@ -16,7 +16,7 @@
 
   .browser {
     width: 100%;
-    transition: var(--transition);
+    transition: var(--ace-transition);
 
     @media only screen and (min-width: 1111px) { /* big screen */
       width: 57rem;
@@ -45,23 +45,6 @@
 
   .hero-support {
     flex: 1;
-    &.atoms {
-      table {
-        th {
-          text-align: left;
-          padding-bottom: 0.3rem;
-        }
-    
-        tr th:not(:first-child),
-        tr td:not(:first-child) {
-          text-align: center;
-        }
-
-        td {
-          padding: 0.3rem 0;
-        }
-      }
-    }
     &.Live {
       table {
 
@@ -86,15 +69,6 @@
         td:nth-child(2) {
           text-align: left;
         }
-      }
-    }
-
-    table {
-      width: 100%;
-
-      th,
-      td {
-        border-bottom: 1px solid #ffffff1c;
       }
     }
 
@@ -148,9 +122,9 @@
       line-height: 1.3;
       font-weight: 700;
       margin: 0.9rem 0 1.8rem 0;
-      transition: var(--transition);
+      transition: var(--ace-transition);
 
-      background: var(--gold-gradient);
+      background: var(--h1-gradient);
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -206,11 +180,6 @@
         margin-top: 1.2rem;
       }
     }
-
-    pre {
-      display: inline;
-      color: var(--code-blue);
-    }
   }
 
   .buttons {
@@ -224,7 +193,7 @@
   }
 
   .ace-tabs .tabs .tab {
-    background: var(--card-bg);
+    background: var(--ace-card);
     &.awareSpeed {
       transition: all 1.5s;
     }

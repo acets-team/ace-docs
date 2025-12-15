@@ -19,7 +19,7 @@ import { onMount, onCleanup, createSignal, type Accessor } from 'solid-js'
 
 
 const heroMap: Record<string, HeroValue> = {
-  'Post.tsx': [`Feel Empowered!`, mdHeroPost],
+  'Post.tsx': [`Be Empowered!`, mdHeroPost],
   'apiGetPartners.ts': ['Ease Your Mind!', mdHeroApi],
   'atoms.ts': ['Be Persistent!', mdHeroAtoms],
   'Chat.tsx': ['Why Try?... Be!', mdHeroForm],
@@ -45,6 +45,7 @@ export function Hero() {
           components={[Lottie]}
           content={h1Util.heroDescription()}
           configPlugins={(md) => {
+            md.use(container, { name: 'table-atoms' })
             md.use(container, { name: 'table-scroll' })
           }} />
 

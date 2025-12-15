@@ -1,4 +1,4 @@
-### Imagine having the `power`, `responsibility` & `opportunity` to `optimize each` Api based on `your` business needs!
+### Imagine having the `power`, `responsibility` & `opportunity` to `optimize each` Api, based on `your` business needs!
 
 <!--{
   "$component": "Lottie",

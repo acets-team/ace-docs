@@ -10,12 +10,15 @@ import apiSearch from '@src/api/apiSearch'
 import { showErrorToast } from '@ace/toast'
 import { feComponent } from '@ace/feComponent'
 import type { BaseStore } from '@src/store/atoms'
+import { createOnNavigationKeyDown } from '@ace/createOnNavigationKeyDown'
 import { hideModal, onShowModal, Modal, onHideModal, showModal } from '@ace/modal'
 import { svg_keyborad_return, svg_keyborad_up, svg_keyborad_down, svg_keyborad_escape, svg_search, svg_x } from '@src/lib/svgs'
 
 
 export const Search = feComponent((props: { baseStore: BaseStore }) => {
   const search = new Async(apiSearch)
+
+  let modalRef: undefined | HTMLElement
   
   let inputRef: undefined | HTMLInputElement
 
@@ -24,6 +27,12 @@ export const Search = feComponent((props: { baseStore: BaseStore }) => {
   let results: undefined | NodeListOf<HTMLAnchorElement>
 
   document.addEventListener('keydown', onToggleKeydown)
+
+
+  const onNavigationKeyDown = createOnNavigationKeyDown({
+    elements: () => results, 
+    onEscape: () => hideModal('search')
+  })
 
 
   onClean(() => {
@@ -80,56 +89,6 @@ export const Search = feComponent((props: { baseStore: BaseStore }) => {
     }
   }, 180)
 
-
-  function onNavigationKeyDown (event: KeyboardEvent) {
-    const keyName = event.key // name of the key pressed
-
-    if (keyName === 'ArrowUp' || keyName === 'ArrowDown') event.preventDefault() // prevent default browser action for arrow keys (ex: scrolling the page)
-
-    switch (keyName) {
-      case 'Escape':
-        hideModal('search')
-        break
-
-      case 'ArrowUp':
-        if (results) {
-          let didFocusOne = false
-
-          for (let i = 0; i < results.length; i++) {
-            if (document.activeElement === results[i]) {
-              didFocusOne = true
-
-              if (i === 0) return // IF first in list THEN stop loop
-
-              results[i - 1].focus() // focus previous
-              return
-            }
-          }
-
-          if (!didFocusOne) results[0].focus()
-        }
-        break
-
-      case 'ArrowDown':
-        if (results) {
-          let didFocusOne = false
-
-          for (let i = 0; i < results.length; i++) {
-            if (document.activeElement === results[i]) {
-              didFocusOne = true
-
-              if (i + 1 === results.length) return // IF last in list THEN stop loop
-
-              results[i + 1].focus() // focus next
-              return
-            }
-          }
-
-          if (!didFocusOne) results[0].focus()
-        }
-        break
-    }
-  }
 
 
   function onToggleKeydown(event: KeyboardEvent) {
@@ -190,7 +149,7 @@ export const Search = feComponent((props: { baseStore: BaseStore }) => {
           <div class="label">to close</div>
         </div>
 
-        <Show when={search.status() !== 'loading'} fallback={<Loading type="two" color="var(--gold)" twoColor="white" />}>
+        <Show when={search.status() !== 'loading'} fallback={<Loading type="two" color="var(--ace-primary)" twoColor="white" />}>
           <div class="power">
             <span>Powered by</span>
             <img src="/logo.webp" />

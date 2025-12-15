@@ -156,8 +156,8 @@ export default new Route('/chat')
 
 ```ts
 // Typical Solutions
-// Long polling: Not real time ❌ 
 // Standard Websockets: Pay when idle ❌ 
+// Polling (request every x seconds): Not real time ❌ 
 
 
 // 🎉 Cloudflare + Ace provides real-time + free when idle 

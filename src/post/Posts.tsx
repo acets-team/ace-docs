@@ -8,22 +8,17 @@ export function Posts() {
       <A path="/" $a={{ end: true }}>What is Ace?</A>
       <A path="/post/:slug" pathParams={{ slug: 'cli' }}>CLI</A>
       <A path="/post/:slug" pathParams={{ slug: 'ace-config' }}>Ace Config</A>
-      <a>Environment Information</a>
-      <a>Atoms</a>
-      <a>Ref (Directives)</a>
-      <a>Error Dictionary</a>
-      <a>VSCode Tips</a>
-    </div>
-
-    <div class="title">🟢 Real Time Data</div>
-    <div class="links">
-      <a>Ace Live Server</a>
+      <A path="/post/:slug" pathParams={{ slug: 'environment-information' }}>Environment Information</A>
+      <A path="/post/:slug" pathParams={{ slug: 'atoms' }}>Atoms</A>
+      <A path="/post/:slug" pathParams={{ slug: 'ref' }}>Bind DOM (Ref)</A>
+      <A path="/post/:slug" pathParams={{ slug: 'scope' }}>Scope</A>
+      <A path="/post/:slug" pathParams={{ slug: 'error-dictionary' }}>Error Dictionary</A>
     </div>
 
     <div class="title">🔀 Routes</div>
     <div class="links">
-      <a>Create Api's</a>
-      <a>Call Api's</a>
+      <A path="/post/:slug" pathParams={{ slug: 'create-api' }}>Create Api's</A>
+      <A path="/post/:slug" pathParams={{ slug: 'call-api' }}>Call Api's</A>
       <a>B4 (Middleware)</a>
       <a>Layouts</a>
       <a>Routes</a>
@@ -31,6 +26,11 @@ export function Posts() {
       <a>Anchor</a>
       <a>Redirects</a>
       <a>Open Graph Demo</a>
+    </div>
+
+    <div class="title">🟢 Real Time Data</div>
+    <div class="links">
+      <A path="/post/:slug" pathParams={{ slug: 'ace-live-server' }}>Ace Live Server</A>
     </div>
 
     <div class="title">👮 Security</div>

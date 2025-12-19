@@ -1,17 +1,15 @@
 import { Load } from '@ace/load'
 import { Route } from '@ace/route'
 import { buildOrigin } from '@ace/env'
-import apiGetPost from '@src/api/apiGetPost'
 import { useStore } from '@src/store/store'
 import { Title, Meta } from '@solidjs/meta'
-import RootLayout from '@src/app/RootLayout'
+import apiGetPost from '@src/api/apiGetPost'
 import { AceMarkdown } from '@ace/aceMarkdown'
 import { registerHljs } from '@src/init/registerHljs'
 import { hljsMarkdownItOptions } from '@ace/hljsMarkdownItOptions'
 
 
 export default new Route('/')
-  .layouts([RootLayout])
   .component(() => {
     const baseStore = useStore()
 
@@ -36,6 +34,6 @@ export default new Route('/')
           registerHljs={registerHljs}
           setHeadings={(v) => baseStore.set('headings', v)}
           markdownItOptions={{ highlight: hljsMarkdownItOptions }} />
-      </>} /> 
+      </>} />
     </>
   })

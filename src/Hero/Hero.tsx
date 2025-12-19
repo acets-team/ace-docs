@@ -50,7 +50,7 @@ export function Hero() {
           }} />
 
         <div class="buttons">
-          <Tron $div={{class: 'brand'}}>
+          <Tron $div={{ class: 'brand' }} color="var(--ace-primary)">
             <a class="brand" href="#create-an-ace-app">Create an Ace App</a>
           </Tron>
 

@@ -1,12 +1,11 @@
 .hero {
   width: 100%;
   max-width: var(--ace-content-max-width);
-  margin-top: 4rem;
   display: flex;
   flex-direction: column;
   gap: 3rem;
   min-height: 45rem;
-  margin-bottom: var(--ace-spacing-sm);
+  margin-block: calc(var(--ace-space) * 9);
 
   @media only screen and (min-width: 1111px) { /* big screen */
     flex-direction: row;
@@ -47,11 +46,6 @@
     flex: 1;
     &.Live {
       table {
-
-        th,
-        td {
-          padding: 0.6rem;
-        }
     
         th:nth-child(3) {
           text-align: right;
@@ -73,7 +67,7 @@
     }
 
     .table-scroll {
-      max-height: 516px;
+      max-height: 519px;
       overflow: auto;
     }
 

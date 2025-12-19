@@ -6,14 +6,18 @@ import { onClean } from '@ace/onClean'
 import { showModal } from '@ace/modal'
 import { debounce } from '@ace/debounce'
 import type { Theme } from '@src/lib/types'
+import { useStore } from '@src/store/store'
 import type { BaseStore } from '@src/store/atoms'
+import { isClickOutsideAll } from '@ace/isClickOutsideAll'
 import { onMount, createSignal, For, type JSX } from 'solid-js'
 import { refDropdown, type DropdownContent } from '@ace/dropdown'
 import { svg_npm, svg_search, svg_github, svg_twitter, svg_youtube, svg_command, svg_discord, svg_menu, svg_vertical_dots, svg_sun, svg_moon } from '@src/lib/svgs'
 
 
 
-export function Nav(props: { baseStore: BaseStore }) {
+export function Nav() {
+  const baseStore = useStore()
+
   let navRef: undefined | HTMLElement
 
   const [isDropdownVisible, setIsDropdownVisible] = createSignal<boolean>()
@@ -25,8 +29,22 @@ export function Nav(props: { baseStore: BaseStore }) {
   const dropdown = refDropdown(() => ({
     setIsDropdownVisible,
     $div: { class: 'nav-dropdown' },
-    content: createDropdownContent(props.baseStore)
+    content: createDropdownContent(baseStore)
   }))
+
+  const refSidenavButton = (button: HTMLButtonElement) => {
+    if (button instanceof HTMLButtonElement) {
+      const cleanIsClickOutsideAll = isClickOutsideAll({
+        aimElements: [button],
+        fn: () => baseStore.set('isSidenavVisible', false)
+      })
+
+      onClean(() => {
+        cleanIsClickOutsideAll()
+      })
+    }
+  }
+
 
   return <>
     <nav ref={navRef}>
@@ -35,7 +53,7 @@ export function Nav(props: { baseStore: BaseStore }) {
 
         <div class="left">
           <Tron borderRadius="50%" $div={{ class: 'menu-toggle' }}>
-            <button class="tron-center" onClick={() => props.baseStore.set('isSidenavVisible', v => !v)}>{svg_menu()}</button>
+            <button ref={refSidenavButton} class="tron-center" onClick={() => baseStore.set('isSidenavVisible', v => !v)}>{svg_menu()}</button>
           </Tron>
           <A path="/" $a={{ class: 'logo', end: true, onClick: onLogoClick }}>
             <img src="/logo.webp" />

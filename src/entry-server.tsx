@@ -1,6 +1,5 @@
 // @refresh reload
 import swRegister from '@ace/swRegister?raw'
-import swStyles from '@ace/sw.styles.css?raw'
 import { createHandler, StartServer } from '@solidjs/start/server'
 
 export default createHandler(() => (
@@ -9,7 +8,6 @@ export default createHandler(() => (
       <html lang="en" data-theme="dark">
         <head>
           <meta charset="utf-8" />
-          <style>{swStyles}</style>
           <link rel="icon" href="/favicon.ico" />
           <link rel="manifest" href="/manifest.json" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />

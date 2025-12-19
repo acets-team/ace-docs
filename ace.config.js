@@ -5,9 +5,8 @@ export const config = {
   sw: true,
   apiDir: 'src/api',
   appDir: 'src/app',
-  logCaughtErrors: true,
   origins: {
-    prod: 'https://create-ace-app.jquery-ssr.workers.dev',
+    prod: ['https://acets.org', 'https://www.acets.org'],
     local: ['http://localhost:3000', 'http://localhost:3001']
   },
   plugins: {

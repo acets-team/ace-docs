@@ -9,7 +9,6 @@
 
 ```ts
 export default new Route('/post/:slug')
-  .layouts([RootLayout])
   .parser(vParser.route({ // 🔮 valibot validations!
     pathParams: { slug: vString() }
   }))
@@ -117,7 +116,7 @@ export type BaseStore = BaseStoreCtx<typeof atoms>
 
 ```ts
 export default new Route('/chat')
-  .layouts([RootLayout])
+  .layout(ChatLayout)
   .component(() => {
     const save = new Async(apiSaveChatMessage) // { run, status }
     const { sync, store, refBind } = useStore() // ⚛️ Atom helpers! 

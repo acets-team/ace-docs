@@ -1,54 +1,98 @@
 .post {
   width: 100%;
-  max-width: var(--ace-content-max-width);
-  display: flex;
-  justify-content: space-between;
-  gap: var(--ace-spacing-md);
-  
-  aside {
-    width: 22.2rem;
-    min-width: 22.2rem;
-    flex: 0 1 auto; /* don’t grow infinitely, but allow shrink */
-    transition: var(--ace-transition);
-    &.left {
+
+  /* 1 column */
+  display: grid;
+  grid-template-columns: 1fr; /* one full width column */
+  grid-template-areas: "main"; /* just showing main */
+
+  /** 1 column */
+  @media (max-width: 809px) { /** width <= 809px */
+    aside {
+      position: fixed;
+      top: 8.1rem;
+      z-index: var(--ace-z-popover);
+      width: 27rem;
+      height: calc(100vh - 9.3rem);
+      transform: translateX(-27rem);
+      transition: transform var(--ace-prop-transition);
+      overflow: auto;
+      opacity: 0;
       &.visible {
         transform: translateX(0);
-      }
-
-      @media only screen and (max-width: 810px) { /* small screen */
-        position: fixed;
-        top: 8.1rem;
-        background: var(--ace-card);
-        z-index: calc(var(--ace-z-content) + 1);
-        border-radius: 3rem;
-        padding: 0 1rem;
+        opacity: 1;
+        background: var(--ace-popover);
+        border: 1px solid var(--ace-border);
         box-shadow: var(--ace-shadow);
-        width: 24rem;
-        transform: translateX(-27rem);
-        height: calc(100vh - 9.3rem);
-        overflow: auto;
-      }
-
-      @media only screen and (min-width: 930px) { /* big screen */
-        .collaborate,
-        .on-this-page,
-        .partners-vertical {
-          display: none;
-        }
+        border-radius: calc(var(--ace-radius) * 3);
+        padding-inline: calc(var(--ace-space) * 3);
       }
     }
-    &.right {
-      display: none;
+  }
 
-      @media only screen and (min-width: 930px) { /* big screen */
-        display: block;
+  /* 2 columns */
+  @media (min-width: 810px) { /** width > 810px */
+    grid-template-areas: "aside main"; /** aside left & main right */
+    grid-template-columns: minmax(22.2rem, auto) 1fr; /** left column has a 22.2rem min & max is content size ... right column takes up remaing space */
+    column-gap: calc(var(--ace-space) * 6); /** space between columns */
+
+    aside {
+      grid-area: aside;
+    }
+  }
+
+  /** 1 and 2 columns */
+  @media (max-width: 929px) { /** width <= 929px */
+    aside {
+      display: flex;
+      flex-direction: column;
+
+      .on-this-page {
+        order: 0;
+      }
+    
+      .posts {
+        order: 1;
+      }
+    
+      .unity {
+        order: 2;
       }
     }
+  }
+
+  /* 3 columns */
+  @media (min-width: 930px) { /** width > 930px */
+    max-width: var(--ace-content-max-width);
+    grid-template-areas: /** defining a 2 rote, 3 column grid */
+      "posts main on-this-page"
+      "posts main unity";
+    grid-template-rows: auto 1fr; /** row 1 => height of on-this-page ... row 2 => takes up the remaining space */
+    grid-template-columns: minmax(22.2rem, auto) 1fr minmax(22.2rem, auto); /** outside columns have a min of 22.2rem and can grow to content ... main takes up remaining space */
+
+    aside {
+      display: contents; /* makes the wrapper disappear visually but keeps its children in the grid */
+    }
+
+    .posts {
+      grid-area: posts;
+    }
+
+    .on-this-page {
+      grid-area: on-this-page;
+    }
+
+    .unity {
+      grid-area: unity;
+    }
+  }
+
+  aside {
+    transition: transform var(--ace-prop-transition);
 
     .title {
       font-weight: bold;
-      margin-top: 2.7rem;
-      margin-bottom: 0.9rem;
+      margin-block: calc(var(--ace-space) * 4) calc(var(--ace-space) * 2);
     }
 
     .links {
@@ -93,6 +137,9 @@
           background-color: var(--ace-primary);
           border-radius: 50%;
         }
+        &:last-child {
+          margin-bottom: 0;
+        }
       }
     }
 
@@ -123,7 +170,7 @@
           backface-visibility: hidden;
           border-radius: 1.5rem;
           background: var(--ace-card);
-          padding: var(--ace-spacing-sm);
+          padding: calc(var(--ace-space) * 3);
           text-align: center;
           box-shadow: var(--ace-shadow);
           &.back {
@@ -156,20 +203,26 @@
   }
 
   main {
-    flex: 1;
+    grid-area: main;
     /** 
       - In Flexbox, items have a default min-width of auto, which often means they cannot shrink smaller than their content
       - Since your <pre>content is a single, non-breaking line of code, its intrinsic width is huge, and the browser respects this when calculating the main item's size
-      - Setting min-width: 0 forces the Flex item (main) to respect the constraints of the parent (.post), allowing it to shrink and preventing it from overflowing the overall container (aka this min-width style is vital ❤️)
+      - Setting min-width: 0 forces the Flex item (main) to respect the constraints of the parent (.post), allowing it to shrink and preventing it from overflowing the overall container
+      - tldr: this min-width style is vital ❤️
     */
     min-width: 0;
     line-height: 1.5;
     transition: var(--ace-transition);
 
+    h1,
     h2,
     h3 {
       margin-bottom: 0;
       scroll-margin-top: 8.1rem;
+    }
+
+    h1:first-child {
+      margin-top: 0;
     }
 
     table {
@@ -208,10 +261,6 @@
     tr th:not(:first-child),
     tr td:not(:first-child) {
       text-align: center;
-    }
-
-    td {
-      padding: 0.3rem 0;
     }
   }
 }

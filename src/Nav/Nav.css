@@ -155,10 +155,6 @@ nav {
         }
       }
 
-      @media only screen and (max-width: 660px) { /* small screen */
-        display: none;
-      }
-
       .tron-center {
         width: 4.2rem;
         height: 4.2rem;

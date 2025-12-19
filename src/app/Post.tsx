@@ -1,10 +1,10 @@
 import { Load } from '@ace/load'
 import { Route } from '@ace/route'
+import { Title } from '@solidjs/meta'
 import { vParser } from '@ace/vParser'
 import { vString } from '@ace/vString'
 import { useStore } from '@src/store/store'
 import apiGetPost from '@src/api/apiGetPost'
-import RootLayout from '@src/app/RootLayout'
 import { AceMarkdown } from '@ace/aceMarkdown'
 import { container } from '@mdit/plugin-container'
 import { registerHljs } from '@src/init/registerHljs'
@@ -12,7 +12,6 @@ import { hljsMarkdownItOptions } from '@ace/hljsMarkdownItOptions'
 
 
 export default new Route('/post/:slug')
-  .layouts([RootLayout])
   .parser(vParser.route({
     pathParams: { slug: vString() }
   }))
@@ -27,6 +26,8 @@ export default new Route('/post/:slug')
 
     return <>
       <post.ui suspense={d => <>
+        <Title>{d?.title}</Title>
+
         <AceMarkdown
           content={d?.content}
           registerHljs={registerHljs}

@@ -1,7 +1,8 @@
 {
-  "name": "Create Ace App",
-  "short_name": "Create Ace App",
+  "name": "Ace",
+  "short_name": "Ace",
   "id": "https://www.npmjs.com/package/@acets-team/ace",
+  "description": "Ace Documentation!",
   "theme_color": "#000000",
   "background_color": "#000000",
   "orientation": "portrait",
@@ -10,7 +11,6 @@
   "lang": "en-US",
   "start_url": "/",
   "scope": "/",
-  "description": "An Ace App!",
   "icons": [
     {
       "purpose": "maskable",

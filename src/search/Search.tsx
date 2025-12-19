@@ -17,8 +17,6 @@ import { svg_keyborad_return, svg_keyborad_up, svg_keyborad_down, svg_keyborad_e
 
 export const Search = feComponent((props: { baseStore: BaseStore }) => {
   const search = new Async(apiSearch)
-
-  let modalRef: undefined | HTMLElement
   
   let inputRef: undefined | HTMLInputElement
 

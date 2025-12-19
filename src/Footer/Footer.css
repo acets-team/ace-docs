@@ -1,5 +1,5 @@
 .footer {
   text-align: center;
-  margin-top: var(--ace-spacing-md);
-  padding: var(--ace-spacing-sm);
+  margin-top: calc(var(--ace-space) * 6);
+  padding: calc(var(--ace-space) * 3);
 }

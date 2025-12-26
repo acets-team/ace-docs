@@ -5,7 +5,6 @@
   }
 
   .modal {
-    background: var(--ace-card);
     box-shadow: var(--ace-shadow);
 
     .input {
@@ -48,12 +47,14 @@
         font-size: 2.1rem;
         margin-bottom: calc(var(--ace-space) * 6);
         border-radius: 0.9rem;
+        border: 1px solid var(--ace-border);
       }
     }
 
     .results {
       margin-bottom: calc(var(--ace-space) * 6);
-      box-shadow: var(--ace-shadow);
+      /* box-shadow: var(--ace-shadow); */
+      background: var(--ace-card);
 
       .result {
         display: block;
@@ -83,10 +84,10 @@
           line-height: 1.5;
 
           mark {
-            background: var(--ace-primary);
-            padding: 0 0.42rem;
-            border-radius: 0.6rem;
-            color: oklch(0.23 0.14 280.98);
+            background: var(--ace-mark);
+            padding-inline: var(--ace-space);
+            border-radius: var(--ace-radius);
+            color: var(--ace-mark-foreground);
             font-weight: bold;
             box-shadow: var(--ace-shadow-inset);
           }
@@ -104,15 +105,10 @@
 
     .search-footer {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
+      justify-content: center;
       gap: var(--ace-space);
-
-      @media only screen and (min-width: 630px) { /* big screen */
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-      }
 
       .keys {
         display: none;
@@ -136,16 +132,6 @@
 
         .label {
           margin-right: 1.5rem;
-        }
-      }
-
-      .power {
-        display: flex;
-        gap: 0.9rem;
-        align-items: center;
-
-        img {
-          height: 2.1rem;
         }
       }
     }

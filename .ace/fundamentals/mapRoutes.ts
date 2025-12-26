@@ -11,6 +11,10 @@ export const mapRoutes = {
     route: () => import("../../src/app/NotFound/NotFound").then((m) => m.default),
     buildUrl: (props?: MapBuildUrlProps) => buildUrl({ ...props, segments: [["*"]] }),
   },
+  '/partners': {
+    route: () => import("../../src/app/Partners/Partners").then((m) => m.default),
+    buildUrl: (props?: MapBuildUrlProps) => buildUrl({ ...props, segments: [["partners"]] }),
+  },
   '/post/:slug': {
     route: () => import("../../src/app/Post").then((m) => m.default),
     buildUrl: (props?: MapBuildUrlProps) => buildUrl({ ...props, segments: [["post"],["slug","r"]] }),

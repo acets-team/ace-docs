@@ -1,14 +1,14 @@
 import { For, Show } from 'solid-js'
 import { Loading } from '@ace/loading'
-import { BaseStore } from '@src/store/atoms'
+import { BaseAtoms } from '@src/store/atoms'
 
 
-export function OnThisPage(props: { baseStore: BaseStore }) {
-  const {store} = props.baseStore
+export function OnThisPage(props: { baseAtoms: BaseAtoms }) {
+  const {store} = props.baseAtoms
 
   return <>
     <div class="on-this-page">
-      <div class="title">📌 On this page</div>
+      <div class="title">🎯 On this page</div>
 
       <Show when={store.headings.length} fallback={<Loading />}>
         <div class="links">

@@ -8,36 +8,32 @@
 
 
 ```ts
-export default new Route('/post/:slug')
-  .parser(vParser.route({ // 🔮 valibot validations!
-    pathParams: { slug: vString() }
+export default new Route('/post/:slug') // ❤️ Solid!
+  .parser(vParser.route({
+    pathParams: { slug: vString() } // ❤️ Valibot!
   }))
   .component((scope) => {
-    const baseStore = useStore()
-
-    const partners = new Stream({ // ✨ Stream for instant static content
-      fn: apiGetPartners,
-      queryKey: 'apiGetPartners' // Solid query cache 🔮
-      store: [baseStore, 'apiGetPartners'] // 💾 instant data on refresh and offline support thanks to auto onChange saves to the apiGetPartners Atom which persists to indexdb (configurable @ atoms.ts)
-    })
-
-    const post = new Load({ // 📝 Load for optimal SEO
+    const post = new Load({
       fn: apiGetPost,
       queryKey: 'apiGetPost',
-      runOnWindowToggle: true, // 🔁 re-run options available @ Stream too
-      runOnNetworkToggle: true,
-      req: () => ({ pathParams: scope.PathParams() }), // ❤️ This type-safe req() function let's us navigate from one post to the next & update <post.ui /> automatically!
+      req: () => ({ pathParams: scope.PathParams() }), // ❤️ Type-Safe!
+    })
+
+    const partners = new Stream({
+      fn: apiGetPartners,
+      queryKey: 'apiGetPartners'
     })
 
     return <>
-      {/* 🚀 Page Title AND Markdown -> Search Engine Optimized */}
-      <post.ui onLoad={() => <Pulse />} suspense={d => <>
+      {/* ❤️ Load.req ensures post.ui updates as path params update! */}
+      <post.ui suspense={d => <>
         <Title>📝 Post · {d?.title}</Title> 
         <AceMarkdown content={d?.content} />
       </>} />
 
-      {/* Automatically placed into Solid's Suspense 👻 */}
-      <partners.ui for={d => <h1>{d?.company}</h1>} />
+      <partners.ui
+        onLoad={() => <Pulse />}
+        for={d => <Partner data={d} />} />
     </>
   })
 ```
@@ -87,28 +83,28 @@ export default createApi('apiGetPartners', info, resolver)
 
 ```ts
 import { Atom } from '@ace/atom'
-import type { ChatMessage } from '@src/lib/types'
-import type { BaseStoreCtx, ApiName2Either } from '@ace/types'
+import { createAtoms } from '@ace/createAtoms'
+import { AceMarkdownHeading } from '@ace/aceMarkdown'
+import type { InferAtoms, ApiName2Either } from '@ace/types'
 
 
-export const atoms = {
+// these are the atoms that power this site! 🤔
+// from page to page & through refresh the searchQuery & searchResults
+// persist. this loveliness is happening b/c they are Atoms! 
+export const { atoms, useAtoms, AtomsContext } = createAtoms({
+  searchQuery: new Atom({ save: 'idb', is: 'string', init: '' }),
+  isSidenavVisible: new Atom({ save: 'm', is: 'boolean', init: false }),
+  headings: new Atom<AceMarkdownHeading[]>({ save: 'm', is: 'json', init: [] }),
+
   // ApiName2Either is type-safe! 👷‍♀️ { data?: T, error?: AceResError }
-  // It knows your current api's, so 'apiGetTransactions' is type-safe!
-  // & it knows this Api's response type so this Atom is now type-safe too!
-  transactions: new Atom<ApiName2Either<'apiGetTransactions'>>({ save: 'idb', is: 'json' }),
-
-  finances: new Atom<ApiName2Either<'apiGetFinances'>>({ save: 'idb', is: 'json' }), // ⚛️ the is prop heps us determine how to serialize and deserialize from the save location. Providing custom onSerialize & onDeserialize to Atom is available
-
-  count: new Atom({ save: 'idb', is: 'number', init: 0 }), 
-
-  chatMessage: new Atom({ save: 'idb', is: 'string', init: '' }), 
-
-  chatMessages: new Atom<ChatMessage[]>({ save: 'idb', is: 'json', init: [] }),
-}
+  // It knows your current api's, so 'apiGetPartners' is type-safe!
+  // & it knows this Api's response type, so this Atom is now type-safe too!
+  partners: new Atom<ApiName2Either<'apiGetPartners'>>({ save: 'idb', is: 'json' }),
+  searchResults: new Atom<ApiName2Either<'apiSearch'>['data']>({ save: 'idb', is: 'json' }),
+})
 
 
-// Atoms are placed into a Solid Store 🔮 and this is its type
-export type BaseStore = BaseStoreCtx<typeof atoms>
+export type BaseAtoms = InferAtoms<typeof atoms>
 ```
 <!--{ "$tabContentEnd": true }-->
 
@@ -122,16 +118,17 @@ export default new Route('/chat')
     const { sync, store, refBind } = useStore() // ⚛️ Atom helpers! 
 
     const onSubmit = createOnSubmit(async ({ event }) => {
-      // IF chatMessage does not pass Api parser THEN no Request is made
+      // info.parser is defined in our Api file once & reused here
+      // IF chatMessage does not pass Api validations, no Request is made
       // <Messages /> ensures chatMessage 🚨 errors are visible by input
       const body = vParser.body(info.parser, { chatMessage: store.chatMessage })
 
-      // not called till FE validation above passes (does not throw)!
+      // not called till FE validations above pass b/c vParser.body throws when invalid
       const res = await save.run({ body })
 
       if (res.error?.message) showErrorToast(res.error.message)
       else if (res.data) {
-        event.currentTarget.reset() // reset form
+        event.target.reset() // reset form
         sync('chatMessages', mergeArrays(store.chatMessages, res.data))
       }
     })
@@ -144,7 +141,7 @@ export default new Route('/chat')
       <form onSubmit={onSubmit} ref={refFormReset()}>
         <input ref={refBind('chatMessage')} name="chatMessage" placeholder="Send a message..." autocomplete="off" type="text" />
         <Messages name="chatMessage" />
-        <Submit fetch={save} label="Send chat message" />
+        <Submit hook={save} label="Send chat message" />
       </form>
     </>
   })

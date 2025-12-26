@@ -13,7 +13,7 @@ export function Posts() {
         <a>Components</a>
         <A path="/post/:slug" pathParams={{ slug: 'ref' }}>Ref (Directives)</A>
         <A path="/post/:slug" pathParams={{ slug: 'atoms' }}>Atoms</A>
-        <a>VsCode Tips</a>
+        <A path="/post/:slug" pathParams={{ slug: 'vscode-tips' }}>VsCode Tips</A>
         <A path="/post/:slug" pathParams={{ slug: 'error-dictionary' }}>Error Dictionary</A>
       </div>
 
@@ -21,9 +21,9 @@ export function Posts() {
       <div class="links">
         <A path="/post/:slug" pathParams={{ slug: 'create-api' }}>Create Api's</A>
         <A path="/post/:slug" pathParams={{ slug: 'call-api' }}>Call Api's</A>
-        <a>B4 (Middleware)</a>
-        <a>Layouts</a>
-        <a>Routes</a>
+        <A path="/post/:slug" pathParams={{ slug: 'b4' }}>B4 (Middleware)</A>
+        <A path="/post/:slug" pathParams={{ slug: 'layouts' }}>Layouts</A>
+        <A path="/post/:slug" pathParams={{ slug: 'routes' }}>Routes</A>
         <a>Breakpoints</a>
         <a>Anchor</a>
         <a>Redirects</a>
@@ -33,7 +33,7 @@ export function Posts() {
       <div class="title">❤️ Engineer Favorites</div>
       <div class="links">
         <A path="/post/:slug" pathParams={{ slug: 'ace-live-server' }}>Real Time Data</A>
-        <a>File Uploads</a>
+        <A path="/post/:slug" pathParams={{ slug: 'file-uploads' }}>File Uploads</A>
         <a>Markdown</a>
         <a>Database</a>
         <a>Email</a>

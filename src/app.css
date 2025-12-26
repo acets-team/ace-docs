@@ -49,15 +49,17 @@ html[data-theme=dark] {
     --ace-accent: linear-gradient(90deg, oklch(0.35 0 0), oklch(0.371 0 0));
     --ace-accent-foreground: oklch(100% 0.00011 271.152);
     --ace-primary: oklch(0.83 0.17 95.69);
-    --ace-border: oklch(1 0 0 / 0.1);
-    --ace-primary-foreground: oklch(0% 0 0);
+    --ace-border: oklch(0.28 0.04 254.82);
+    --ace-primary-foreground: oklch(17.141% 0.0156 18.733);
     --ace-secondary: oklch(23.88% 0.01654 264.212);
     --ace-secondary-foreground: oklch(100% 0.00011 271.152);
     --ace-code: linear-gradient(90deg, oklch(0.87 0.11 211.83), oklch(0.89 0.09 210.5));
     --ace-card: linear-gradient(to bottom right, oklch(18.339% 0.03171 209.849), oklch(15.046% 0.02139 283.531 / 0.9));
     --ace-popover-foreground: oklch(100% 0.00011 271.152);
+    --ace-mark: oklch(0.92 0.16 96.21);
+    --ace-mark-foreground: oklch(0.23 0.14 280.98);
 
-    --ace-popover: oklch(0.205 0 0);
+    --ace-popover: oklch(0.21 0.034 264.665);
 
     --ace-shadow-inset: inset 0 0 6px rgba(0, 0, 0, 0.4),
       inset 0 0 2px rgba(0, 0, 0, 0.2);
@@ -68,11 +70,9 @@ html[data-theme=dark] {
       inset 0 1px 2px oklch(100% 0.00011 271.152 / 0.08),
       inset 0 -3px 6px oklch(0% 0 0 / 0.35);
   
-    --ace-input: linear-gradient(to bottom right,
-      oklch(19.996% 0.07888 267.485),
-      oklch(21.885% 0.06088 295.329));
+    --ace-input: var(--ace-card);
 
-    --h1-gradient: linear-gradient(90deg, oklch(89.216% 0.13836 92.94), oklch(88.395% 0.18159 96.411), oklch(89.216% 0.13836 92.94));
+    --ace-pop: linear-gradient(90deg, oklch(88.047% 0.1497 92.044), oklch(88.395% 0.18159 96.411));
     }
   
   /* @import '@highlightjs/cdn-assets/styles/github-dark.min.css'; */
@@ -178,7 +178,6 @@ body * {
 }
 
 #app {
-  padding: calc(var(--ace-space) * 3);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -212,14 +211,10 @@ button.brand {
   transition: var(--ace-transition);
   user-select: none;
   touch-action: manipulation; /* Prevent zoom on mobile double-tap */
-  /* box-shadow: var(--ace-shadow-inset); */
   box-shadow:
     0 4px 18px oklch(84.194% 0.16831 90.435 / 0.21),
     inset 0 1px 3px oklch(100% 0.00011 271.152 / 0.35),
     inset 0 -3px 6px oklch(0% 0 0 / 0.55);
-  /* box-shadow:
-    0 4px 18px rgba(245, 197, 24, 0.21),
-    var(--ace-shadow-inset); */
   &:disabled {
     cursor: default;
     opacity: 0.7;
@@ -368,4 +363,11 @@ table {
     border-bottom: 1px solid #ffffff1c;
     padding: var(--ace-space);
   }
+}
+
+.pop {
+  background: var(--ace-pop);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

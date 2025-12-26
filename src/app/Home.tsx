@@ -1,23 +1,26 @@
 import { Load } from '@ace/load'
 import { Route } from '@ace/route'
+import { Lottie } from '@ace/lottie'
 import { buildOrigin } from '@ace/env'
-import { useStore } from '@src/store/store'
+import { useAtoms } from '@src/store/atoms'
 import { Title, Meta } from '@solidjs/meta'
 import apiGetPost from '@src/api/apiGetPost'
 import { AceMarkdown } from '@ace/aceMarkdown'
+import { container } from '@mdit/plugin-container'
 import { registerHljs } from '@src/init/registerHljs'
 import { hljsMarkdownItOptions } from '@ace/hljsMarkdownItOptions'
 
 
 export default new Route('/')
   .component(() => {
-    const baseStore = useStore()
+    const baseAtoms = useAtoms()
 
     const post = new Load({
       fn: apiGetPost,
       queryKey: 'apiGetPost',
-      store: [baseStore, 'whatIsAce'],
+      atom: [baseAtoms, 'whatIsAce'],
       req: () => ({ pathParams: { slug: 'what-is-ace' } }),
+      
     })
 
     return <>
@@ -30,10 +33,14 @@ export default new Route('/')
 
       <post.ui suspense={d => <>
         <AceMarkdown
+          components={[Lottie]}
           content={d?.content}
           registerHljs={registerHljs}
-          setHeadings={(v) => baseStore.set('headings', v)}
-          markdownItOptions={{ highlight: hljsMarkdownItOptions }} />
+          setHeadings={(v) => baseAtoms.set('headings', v)}
+          markdownItOptions={{ highlight: hljsMarkdownItOptions }}
+          configPlugins={(md) => {
+            md.use(container, { name: 'table-pricing' })
+          }} />
       </>} />
     </>
   })

@@ -4,6 +4,9 @@ export const treeRoutes = {
     "*": {
       "key": "*"
     },
+    "partners": {
+      "key": "/partners"
+    },
     "post": {
       "param": {
         "name": "slug",

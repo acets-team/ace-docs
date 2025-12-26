@@ -1,9 +1,10 @@
 import { Load } from '@ace/load'
 import { Route } from '@ace/route'
+import { Lottie } from '@ace/lottie'
 import { Title } from '@solidjs/meta'
-import { vParser } from '@ace/vParser'
+import { vParser, vBool, vNum } from '@ace/vParser'
 import { vString } from '@ace/vString'
-import { useStore } from '@src/store/store'
+import { useAtoms } from '@src/store/atoms'
 import apiGetPost from '@src/api/apiGetPost'
 import { AceMarkdown } from '@ace/aceMarkdown'
 import { container } from '@mdit/plugin-container'
@@ -16,12 +17,12 @@ export default new Route('/post/:slug')
     pathParams: { slug: vString() }
   }))
   .component((scope) => {
-    const baseStore = useStore()
+    const baseAtoms = useAtoms()
 
     const post = new Load({
       fn: apiGetPost,
       queryKey: 'apiGetPost',
-      req: () => ({ pathParams: scope.PathParams() }),
+      req: () => ({ pathParams: scope.PathParams() })
     })
 
     return <>
@@ -30,8 +31,9 @@ export default new Route('/post/:slug')
 
         <AceMarkdown
           content={d?.content}
+          components={[Lottie]}
           registerHljs={registerHljs}
-          setHeadings={(v) => baseStore.set('headings', v)}
+          setHeadings={(v) => baseAtoms.set('headings', v)}
           markdownItOptions={ { highlight: hljsMarkdownItOptions }}
           configPlugins={(md) => {
             md.use(container, { name: 'table-atoms' })

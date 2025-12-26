@@ -4,22 +4,22 @@ import { Stream } from '@ace/stream'
 import { Hero } from '@src/Hero/Hero'
 import { Posts } from '@src/post/Posts'
 import { Footer } from '@src/Footer/Footer'
-import { Search } from '@src/search/Search'
-import { useStore } from '@src/store/store'
+import { Search } from '@src/_Search/Search'
+import { useAtoms } from '@src/store/atoms'
 import { RootLayout } from '@ace/rootLayout'
+import { Partners } from '@src/post/Partners'
 import { OnThisPage } from '@src/post/OnThisPage'
 import { Collaborate } from '@src/post/Collaborate'
 import apiGetPartners from '@src/api/apiGetPartners'
-import { PartnersVertical } from '@src/post/PartnersVertical'
 
 
 export default new RootLayout((scope) => {
-  const baseStore = useStore()
+  const baseAtoms = useAtoms()
 
   const partners = new Stream({
     fn: apiGetPartners,
     queryKey: 'partners',
-    store: [baseStore, 'partners']
+    atom: [baseAtoms, 'partners']
   })
 
   return <>
@@ -30,13 +30,13 @@ export default new RootLayout((scope) => {
     </Show>
 
     <div class="post">
-      <aside classList={{ visible: baseStore.store.isSidenavVisible }}>
+      <aside classList={{ visible: baseAtoms.store.isSidenavVisible }}>
         <Posts />
-        <OnThisPage baseStore={baseStore} />
+        <OnThisPage baseAtoms={baseAtoms} />
 
         <section class="unity">
           <Collaborate />
-          <PartnersVertical partners={partners} />
+          <Partners partners={partners} />
         </section>
       </aside>
 
@@ -45,6 +45,6 @@ export default new RootLayout((scope) => {
 
     <Footer />
 
-    <Search baseStore={baseStore} />
+    <Search baseAtoms={baseAtoms} />
   </>
 })

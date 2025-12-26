@@ -8,16 +8,16 @@
 }-->
 
 - `ApiInfo`
-    - The industry standard is `opaque` RPC `server functions`
-    - ❤️ With Ace we may `curl` our Api from `bash`, b/c the `path` defined @ `ApiInfo`, is our actual Api path 
-    - & we may define parser validations once w/ `no/any library once` here, and `re-use` them on the `FE` (frontend)
+    - The industry standard is `opaque` RPC `server functions` that require framework lock-in 🤬
+    - ❤️ With Ace, you can `curl` your Api from `bash` 🥹 b/c the `path` defined @ `ApiInfo`, is your actual Api path 
+    - & w/ `no OR any library`, define parsing validators once and `re-use` the validators on the `FE` (frontend)
 
 - `res()`
-    - ☮️ `scope.[pathParams, searchParams, body]` -> type-safe
+    - `scope.[pathParams, searchParams, body]` -> type-safe
     - On error -> calls `scope.error()` automatically
-    - To respond w/ a custom error just `return scope.error()` or `throw new Error('WTF', { cause: { lol: true } })` & your API Response will include the `message` & the `cause data`!
-    - To do a type-safe redirect just `return scope.go()`
-    - To send custom headers just `return scope.respond()`
+    - To respond w/ a custom error, `return scope.error()` or `throw new Error('WTF', { cause: { lol: true } })` & your API Response will include the `message` & `cause`!
+    - 🤓 `return scope.go()` to do a type-safe redirect 
+    - `return scope.respond()` to send custom headers
 <!-- 
 - `status`
     - When defining `Enums` the `value` is optional

@@ -3,7 +3,7 @@ import { onCleanup } from 'solid-js'
 import type { ApiName2Stream } from '@ace/types'
 
 
-export function PartnersVertical(props: { partners: ApiName2Stream<'apiGetPartners'> }) {
+export function Partners(props: { partners: ApiName2Stream<'apiGetPartners'> }) {
   const partnerFlipHoldTime = 30 * msSecond
 
   return <>

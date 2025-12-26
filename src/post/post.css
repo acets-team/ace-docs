@@ -1,5 +1,6 @@
 .post {
   width: 100%;
+  padding-inline: calc(var(--ace-space) * 3);
 
   /* 1 column */
   display: grid;
@@ -33,7 +34,7 @@
   /* 2 columns */
   @media (min-width: 810px) { /** width > 810px */
     grid-template-areas: "aside main"; /** aside left & main right */
-    grid-template-columns: minmax(22.2rem, auto) 1fr; /** left column has a 22.2rem min & max is content size ... right column takes up remaing space */
+    grid-template-columns: 22.2rem 1fr; /** left column is 22.2rem ... right column takes up remaing space */
     column-gap: calc(var(--ace-space) * 6); /** space between columns */
 
     aside {
@@ -44,11 +45,9 @@
   /** 1 and 2 columns */
   @media (max-width: 929px) { /** width <= 929px */
     aside {
-      display: flex;
-      flex-direction: column;
 
       .on-this-page {
-        order: 0;
+        display: none;
       }
     
       .posts {
@@ -68,7 +67,7 @@
       "posts main on-this-page"
       "posts main unity";
     grid-template-rows: auto 1fr; /** row 1 => height of on-this-page ... row 2 => takes up the remaining space */
-    grid-template-columns: minmax(22.2rem, auto) 1fr minmax(22.2rem, auto); /** outside columns have a min of 22.2rem and can grow to content ... main takes up remaining space */
+    grid-template-columns: 22.2rem 1fr 22.2rem; /** outside columns are 22.2rem ... main takes up remaining space */
 
     aside {
       display: contents; /* makes the wrapper disappear visually but keeps its children in the grid */
@@ -92,7 +91,7 @@
 
     .title {
       font-weight: bold;
-      margin-block: calc(var(--ace-space) * 4) calc(var(--ace-space) * 2);
+      margin-block: calc(var(--ace-space) * 5) calc(var(--ace-space) * 2);
     }
 
     .links {
@@ -112,6 +111,7 @@
         display: block;
         cursor: pointer;
         transition: var(--ace-transition);
+        line-height: 1.5;
 
         background: none;
         background-clip: unset;
@@ -222,7 +222,7 @@
     }
 
     h1:first-child {
-      margin-top: 0;
+      margin-top: var(--ace-space);
     }
 
     table {
@@ -247,6 +247,39 @@
         width: 100%;
         word-spacing: normal; /** allow word wrapping */
       }
+    }
+
+    li p {
+      margin-block: var(--ace-space) 0;
+    }
+
+    ul,
+    ol,
+    p {
+      margin-block: var(--ace-space);
+    }
+
+    p {
+      margin-block: var(--ace-space) calc(var(--ace-space) * 3);
+    }
+
+    .ace-lottie-wrapper.coins {
+      aspect-ratio: 525 / 262;
+      width: 100%;
+      margin-top: -12rem;
+
+      .ace-lottie {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.table-pricing {
+  table {
+    tr th:last-child,
+    tr td:last-child {
+      text-align: center;
     }
   }
 }

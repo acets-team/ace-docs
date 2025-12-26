@@ -6,8 +6,8 @@ import { onClean } from '@ace/onClean'
 import { showModal } from '@ace/modal'
 import { debounce } from '@ace/debounce'
 import type { Theme } from '@src/lib/types'
-import { useStore } from '@src/store/store'
-import type { BaseStore } from '@src/store/atoms'
+import { useAtoms } from '@src/store/atoms'
+import type { BaseAtoms } from '@src/store/atoms'
 import { isClickOutsideAll } from '@ace/isClickOutsideAll'
 import { onMount, createSignal, For, type JSX } from 'solid-js'
 import { refDropdown, type DropdownContent } from '@ace/dropdown'
@@ -16,7 +16,7 @@ import { svg_npm, svg_search, svg_github, svg_twitter, svg_youtube, svg_command,
 
 
 export function Nav() {
-  const baseStore = useStore()
+  const baseAtoms = useAtoms()
 
   let navRef: undefined | HTMLElement
 
@@ -29,14 +29,14 @@ export function Nav() {
   const dropdown = refDropdown(() => ({
     setIsDropdownVisible,
     $div: { class: 'nav-dropdown' },
-    content: createDropdownContent(baseStore)
+    content: createDropdownContent(baseAtoms)
   }))
 
   const refSidenavButton = (button: HTMLButtonElement) => {
     if (button instanceof HTMLButtonElement) {
       const cleanIsClickOutsideAll = isClickOutsideAll({
         aimElements: [button],
-        fn: () => baseStore.set('isSidenavVisible', false)
+        fn: () => baseAtoms.set('isSidenavVisible', false)
       })
 
       onClean(() => {
@@ -53,7 +53,7 @@ export function Nav() {
 
         <div class="left">
           <Tron borderRadius="50%" $div={{ class: 'menu-toggle' }}>
-            <button ref={refSidenavButton} class="tron-center" onClick={() => baseStore.set('isSidenavVisible', v => !v)}>{svg_menu()}</button>
+            <button ref={refSidenavButton} class="tron-center" onClick={() => baseAtoms.set('isSidenavVisible', v => !v)}>{svg_menu()}</button>
           </Tron>
           <A path="/" $a={{ class: 'logo', end: true, onClick: onLogoClick }}>
             <img src="/logo.webp" />
@@ -86,11 +86,11 @@ export function Nav() {
 
 
 
-function createDropdownContent(baseStore: BaseStore): DropdownContent {
+function createDropdownContent(baseAtoms: BaseAtoms): DropdownContent {
   return ({ setIsVisible }) => {
     return <>
       <div class="label">🎯 On This Page</div>
-      <For each={baseStore.store.headings}>{
+      <For each={baseAtoms.store.headings}>{
         (heading) => <a class="item no-underline" href={`#${heading.slug}`} onClick={() => setIsVisible(false)}>{heading.label}</a>
       }</For>
 

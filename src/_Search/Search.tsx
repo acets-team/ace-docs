@@ -9,13 +9,13 @@ import { debounce } from '@ace/debounce'
 import apiSearch from '@src/api/apiSearch'
 import { showErrorToast } from '@ace/toast'
 import { feComponent } from '@ace/feComponent'
-import type { BaseStore } from '@src/store/atoms'
+import type { BaseAtoms } from '@src/store/atoms'
 import { createOnNavigationKeyDown } from '@ace/createOnNavigationKeyDown'
 import { hideModal, onShowModal, Modal, onHideModal, showModal } from '@ace/modal'
 import { svg_keyborad_return, svg_keyborad_up, svg_keyborad_down, svg_keyborad_escape, svg_search, svg_x } from '@src/lib/svgs'
 
 
-export const Search = feComponent((props: { baseStore: BaseStore }) => {
+export const Search = feComponent((props: { baseAtoms: BaseAtoms }) => {
   const search = new Async(apiSearch)
   
   let inputRef: undefined | HTMLInputElement
@@ -60,7 +60,7 @@ export const Search = feComponent((props: { baseStore: BaseStore }) => {
 
 
   function onReset() {
-    props.baseStore.set('searchQuery', '')
+    props.baseAtoms.set('searchQuery', '')
 
     if (inputRef) {
       inputRef.focus()
@@ -70,7 +70,7 @@ export const Search = feComponent((props: { baseStore: BaseStore }) => {
 
 
   const onSearch = debounce(async (query: string) => {
-    if (!query) props.baseStore.set('searchResults', [])
+    if (!query) props.baseAtoms.set('searchResults', [])
     else {
       const res = await search.run({ pathParams: { query } })
 
@@ -80,7 +80,7 @@ export const Search = feComponent((props: { baseStore: BaseStore }) => {
           d.preview = md2Preview(d.preview)
         }
 
-        props.baseStore.set('searchResults', res.data)
+        props.baseAtoms.set('searchResults', res.data)
 
         setResults()
       }
@@ -107,19 +107,19 @@ export const Search = feComponent((props: { baseStore: BaseStore }) => {
       <div class="input">
         <input
           onInput={(e) => onSearch(e.currentTarget.value)}
-          ref={refs(el => inputRef = el, props.baseStore.refBind('searchQuery'))}
+          ref={refs(el => inputRef = el, props.baseAtoms.refBind('searchQuery'))}
           placeholder="Search..." type="text" name="search" autocomplete="off" />
 
         <div class="lens" aria-hidden="true">{svg_search()}</div>
 
-        <Show when={props.baseStore.store.searchQuery}>
+        <Show when={props.baseAtoms.store.searchQuery}>
           <button onClick={onReset} type="button" aria-label="Clear Search Query">{svg_x()}</button>
         </Show>
       </div>
 
-      <Show when={props.baseStore.store.searchResults?.length}>
+      <Show when={props.baseAtoms.store.searchResults?.length}>
         <div class="results" ref={resultsRef} role="status" aria-live="polite">
-          <For each={props.baseStore.store.searchResults}>{
+          <For each={props.baseAtoms.store.searchResults}>{
             (d) => <>
               <A path="/post/:slug" pathParams={{slug: d.slug}} $a={{class: 'result', onClick: () => hideModal('search')}}>
                 <div class="title">{d.title}</div>
@@ -130,27 +130,23 @@ export const Search = feComponent((props: { baseStore: BaseStore }) => {
         </div>
       </Show>
 
-      <Show when={props.baseStore.store.searchQuery && !props.baseStore.store.searchResults?.length && search.status() === 'success'}>
+      <Show when={props.baseAtoms.store.searchQuery && !props.baseAtoms.store.searchResults?.length && search.status() === 'success'}>
         <div class="no-results" role="status" aria-live="polite">No results found. Try a different search term please.</div>
       </Show>
 
       <div class="search-footer">
-        <div class="keys">
-          <div class="key">{svg_keyborad_return()}</div>
-          <div class="label">to select</div>
-
-          <div class="key">{svg_keyborad_up()}</div>
-          <div class="key">{svg_keyborad_down()}</div>
-          <div class="label">to navigate</div>
-
-          <div class="key">{svg_keyborad_escape()}</div>
-          <div class="label">to close</div>
-        </div>
 
         <Show when={search.status() !== 'loading'} fallback={<Loading type="two" color="var(--ace-primary)" twoColor="white" />}>
-          <div class="power">
-            <span>Powered by</span>
-            <img src="/logo.webp" />
+          <div class="keys">
+            <div class="key">{svg_keyborad_return()}</div>
+            <div class="label">to select</div>
+
+            <div class="key">{svg_keyborad_up()}</div>
+            <div class="key">{svg_keyborad_down()}</div>
+            <div class="label">to navigate</div>
+
+            <div class="key">{svg_keyborad_escape()}</div>
+            <div class="label">to close</div>
           </div>
         </Show>
       </div>

@@ -1,4 +1,4 @@
-
+import 'dotenv/config'
 import { resolveAlias } from './.ace/resolveAlias'
 import { defineConfig } from '@solidjs/start/config'
 

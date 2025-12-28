@@ -26,9 +26,11 @@ main.not-found {
   .path {
     display: table;
     font-family: monospace;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 0.27rem 0.6em;
-    border-radius: 0.6rem;
+    background: var(--ace-card);
+    padding: var(--ace-space) calc(var(--ace-space) * 2);
+    border-radius: var(--ace-radius);
+    border: 0.1rem solid var(--ace-border);
+    box-shadow: var(--ace-shadow-subtle);
     margin: 0 auto calc(var(--ace-space) * 6) auto;
   }
 }

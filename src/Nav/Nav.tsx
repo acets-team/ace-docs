@@ -84,7 +84,7 @@ export function Nav() {
             <div class="lens">{svg_search()}</div>
             <div class="placeholder">Search</div>
 
-            <Tron borderRadius="2.1rem" zIndex="calc(var(--ace-z-nav) + 1)">
+            <Tron zIndex="calc(var(--ace-z-nav) + 1)">
               <button onClick={() => showModal('search')} class="input" type="button" />
             </Tron>
 

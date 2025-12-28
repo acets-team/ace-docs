@@ -1,7 +1,6 @@
 <!--{
   "name": "browser",
   "variant": "tron",
-  "$Tron": {"borderRadius": "9rem"},
   "$tabs": ["Post.tsx", "apiGetPartners.ts", "atoms.ts", "Chat.tsx", "Live.tsx"]
 }-->
 

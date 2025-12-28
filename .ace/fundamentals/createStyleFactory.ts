@@ -49,7 +49,7 @@ export function createStyleFactory<T_Props extends Record<string, any>>(props: {
 
   /**
    * - Creates a `style()` `memo` that takes into consideration requested styles (ex: `$div.style`) & the provided style `maps`
-   * - 🚨 IF `propValue` is umdefined THEN no addition is made to responded `style() memo`, so no empty variables are added to our HTML
+   * - 🚨 IF `propValue` is undefined THEN no addition is made to responded `style() memo`, so no empty variables are added to our HTML
    * - 🚨 IF multiple map items produce the same CSS variable as seen in the example below THEN last takes precedence (this is why maps is an array)
    * @example
     ```ts

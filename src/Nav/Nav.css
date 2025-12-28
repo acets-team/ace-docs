@@ -62,7 +62,7 @@ nav {
         display: none;
       }
 
-      .tron-center {
+      .ace-tron__center {
         cursor: pointer;
         width: 4.2rem;
         height: 4.2rem;
@@ -88,7 +88,7 @@ nav {
     z-index: calc(var(--ace-z-nav) + 1);
 
     .search .input,
-    .icon .tron-center {
+    .icon .ace-tron__center {
       cursor: pointer;
       box-shadow: var(--ace-shadow-subtle);
       background: var(--ace-card);
@@ -169,7 +169,7 @@ nav {
         }
       }
 
-      .tron-center {
+      .ace-tron__center {
         width: 4.2rem;
         height: 4.2rem;
         color: var(--ace-muted-foreground);

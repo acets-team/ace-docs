@@ -72,7 +72,7 @@ export function Nav() {
 
         <div class="left">
           <Tron borderRadius="50%" $div={{ class: 'menu-toggle' }}>
-            <button ref={refSidenavButton} class="tron-center" onClick={() => baseAtoms.set('isSidenavVisible', v => !v)}>{svg_menu()}</button>
+            <button ref={refSidenavButton} class="ace-tron__center" onClick={() => baseAtoms.set('isSidenavVisible', v => !v)}>{svg_menu()}</button>
           </Tron>
           <A path="/" $a={{ class: 'logo', end: true, onClick: onLogoClick }}>
             <img src="/logo.webp" />
@@ -95,7 +95,7 @@ export function Nav() {
           </div>
 
           <Tron status={isDropdownVisible() ? 'infinite' : 'hover'} borderRadius="50%" $div={{ class: 'icon' }}>
-            <div ref={dropdown} class="tron-center">{svg_vertical_dots()}</div>
+            <div ref={dropdown} class="ace-tron__center">{svg_vertical_dots()}</div>
           </Tron>
         </div>
       </div>

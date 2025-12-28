@@ -1,7 +1,8 @@
+import '@ace/base.styles.css' // 🚨 Must be the first CSS import in app.tsx
+
 import './app.css'
 import './post/post.css'
-import './_Search/Search.css'
-import '@ace/base.styles.css'
+import './Search/Search.css'
 import '@ace/tron.styles.css'
 import '@ace/tabs.styles.css'
 import '@ace/modal.styles.css'

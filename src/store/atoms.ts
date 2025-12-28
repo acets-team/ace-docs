@@ -9,7 +9,8 @@ export const { atoms, useAtoms, AtomsContext } = createAtoms({
   isSidenavVisible: new Atom({ save: 'm', init: false }),
   headings: new Atom<AceMarkdownHeading[]>({ save: 'm', is: 'json', init: [] }),
   whatIsAce: new Atom<ApiName2Either<'apiGetPost'>>({ save: 'idb', is: 'json' }),
-  partners: new Atom<ApiName2Either<'apiGetPartners'>>({ save: 'idb', is: 'json' }),
+  apiGetPartners: new Atom<ApiName2Either<'apiGetPartners'>>({ save: 'idb', is: 'json' }),
+  apiGetPostGroups: new Atom<ApiName2Either<'apiGetPostGroups'>>({ save: 'idb', is: 'json' }),
   searchResults: new Atom<ApiName2Either<'apiSearch'>['data']>({ save: 'idb', is: 'json' }),
 })
 

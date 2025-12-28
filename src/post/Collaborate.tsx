@@ -4,9 +4,9 @@ export function Collaborate() {
       <div class="title">🤝 Collaborate</div>
 
       <div class="links">
-        <a>Contact Us</a>
-        <a>Become a Partner</a>
-        <a>Join our Community</a>
+        <a class="underline">Contact Us</a>
+        <a class="underline">Become a Partner</a>
+        <a class="underline">Join our Community</a>
       </div>
     </div>
   </>

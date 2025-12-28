@@ -230,6 +230,20 @@ export type ApiName2Async<T_Name extends ApiNames> = Async<ApiName2Req<T_Name>, 
 export type Async2ResData<T_Async> = T_Async extends Async<any, infer T_ResData> ? T_ResData : never
 
 
+/** 
+ * - Receives: Load
+ * - Gives: ResData
+*/
+export type Load2ResData<T_Load> = T_Load extends Load<any, infer T_ResData> ? T_ResData : never
+
+
+/** 
+ * - Receives: Stream
+ * - Gives: ResData
+*/
+export type Stream2ResData<T_Stream> = T_Stream extends Stream<any, infer T_ResData> ? T_ResData : never
+
+
 export type ApiResolver2ResData<T_Resolver extends ApiResolverFn<any, any>> = Awaited<ReturnType<T_Resolver>> extends infer T_Result
   ? T_Result extends AceResponse<infer T_Res_Data>
   ? T_Res_Data
@@ -256,7 +270,7 @@ export type ApiReq2Body<T_Req extends BaseApiReq> = NonNullable<T_Req['body']> e
 
 /**
  * Receives: Api request type
- * Gives: Api body type
+ * Gives: Form Data object type
  */
 export type ApiReq2FormData<T_Req extends BaseApiReq> = NonNullable<T_Req['formData']> extends BaseBody
   ? NonNullable<T_Req['formData']>

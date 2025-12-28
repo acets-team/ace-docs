@@ -1,8 +1,7 @@
 import { r2Url } from './r2Url'
 import { mergeObjects } from './merge'
-import { r2CustomMetadataHeader, r2KeyHeader } from './vars'
+import { r2CustomMetadataHeader } from './vars'
 import type { R2HttpMetadata, R2ListOptions, R2OnlyIf } from './vanilla'
-import { getRequestEvent } from './getRequestEvent'
 
 
 /**

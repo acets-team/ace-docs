@@ -121,7 +121,7 @@ export const Search = feComponent((props: { baseAtoms: BaseAtoms }) => {
         <div class="results" ref={resultsRef} role="status" aria-live="polite">
           <For each={props.baseAtoms.store.searchResults}>{
             (d) => <>
-              <A path="/post/:slug" pathParams={{slug: d.slug}} $a={{class: 'result', onClick: () => hideModal('search')}}>
+              <A path="/post/:slug" pathParams={{slug: d.slug}} $a={{class: 'result underline', onClick: () => hideModal('search')}}>
                 <div class="title">{d.title}</div>
                 <div class="preview" innerHTML={d.preview} />
               </A>

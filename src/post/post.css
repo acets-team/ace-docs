@@ -96,7 +96,7 @@
 
     .links {
       transform: translateX(0.9rem);
-      border-left: 1px solid var(--ace-primary);
+      border-left: 0.1rem solid var(--ace-primary);
 
       .ace-loading {
         --ace-loading-size: 3rem;
@@ -112,11 +112,8 @@
         cursor: pointer;
         transition: var(--ace-transition);
         line-height: 1.5;
-
-        background: none;
-        background-clip: unset;
-        -webkit-background-clip: unset;
-        -webkit-text-fill-color: initial;
+        text-decoration: none;
+        font-weight: var(--ace-semibold);
         &:hover {
           color: var(--ace-primary);
         }
@@ -134,7 +131,7 @@
           transform: translateY(-50%);
           width: 0.9rem;
           height: 0.9rem;
-          background-color: var(--ace-primary);
+          background: var(--ace-primary);
           border-radius: 50%;
         }
         &:last-child {
@@ -173,6 +170,7 @@
           padding: calc(var(--ace-space) * 3);
           text-align: center;
           box-shadow: var(--ace-shadow);
+          border: 0.1rem solid var(--ace-border);
           &.back {
             transform: rotateX(180deg);
           }
@@ -241,6 +239,7 @@
       padding: 2.4rem 1.8rem;
       border-radius: 1.8rem;
       box-shadow: var(--ace-shadow);
+      border: 0.1rem solid var(--ace-border);
 
       code {
         display: block; /* override inline */
@@ -264,7 +263,7 @@
     }
 
     .ace-lottie-wrapper.coins {
-      aspect-ratio: 525 / 262;
+      aspect-ratio: 1391 / 695;
       width: 100%;
       margin-top: -12rem;
 

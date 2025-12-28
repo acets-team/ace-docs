@@ -1,3 +1,20 @@
+html[data-theme=light] {
+  nav {
+    &.lower {
+    
+      .bg {
+        opacity: 1;
+      }
+    }
+
+    .bg {
+      opacity: 1;
+      box-shadow: var(--ace-shadow-subtle);
+      background: oklch(98.519% 0.00423 271.371);
+    }
+  }
+}
+
 nav {
   width: 100%;
   position: fixed;
@@ -50,7 +67,7 @@ nav {
         width: 4.2rem;
         height: 4.2rem;
         background: var(--ace-card);
-        box-shadow: var(--ace-shadow-inset);
+        box-shadow: var(--ace-shadow-subtle);
       }
     }
 
@@ -73,7 +90,7 @@ nav {
     .search .input,
     .icon .tron-center {
       cursor: pointer;
-      box-shadow: var(--ace-shadow-inset);
+      box-shadow: var(--ace-shadow-subtle);
       background: var(--ace-card);
     }
 
@@ -85,10 +102,10 @@ nav {
       transform: translateY(0.06rem);
       transition: var(--ace-transition);
       &:hover {
-        color: var(--ace-accent);
+        color: var(--ace-foreground);
 
         svg {
-          color: var(--ace-accent);
+          color: var(--ace-foreground);
         }
       }
 
@@ -133,14 +150,11 @@ nav {
         display: flex;
         justify-content: center;
         align-items: center;
-        &:focus {
-          border: 1px solid var(--ace-primary);
-          outline: none;
-        }
       }
 
       .placeholder {
         left: 4.2rem;
+        font-weight: var(--ace-semibold);
       }
 
       .hot {
@@ -151,7 +165,7 @@ nav {
     .icon {
       &:hover {
         svg {
-          color: var(--ace-accent);
+          color: var(--ace-foreground);
         }
       }
 

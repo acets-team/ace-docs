@@ -14,7 +14,7 @@ export function OnThisPage(props: { baseAtoms: BaseAtoms }) {
         <div class="links">
 
           <For each={store.headings}>{
-            (h) => <a href={`#${h.slug}`}>{h.label}</a>
+            (h) => <a href={`#${h.slug}`} class="underline">{h.label}</a>
           }</For>
         </div>
       </Show>

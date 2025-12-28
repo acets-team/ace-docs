@@ -13,3 +13,15 @@ export type SearchResult = {
 }
 
 export type Theme = InferEnums<typeof themes>
+
+export type PostGroup = {
+  id: number
+  title: string
+  order: number
+  posts: {
+    id: number
+    title: string
+    slug: string
+    order: number
+  }[]
+}

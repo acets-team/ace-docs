@@ -156,7 +156,7 @@ function CarouselPlugins() {
 function CarouselPluin(props: {href: string, src: string, name: string}) {
   return <>
     <a href={props.href} target="_blank" rel="noopener noreferrer"
-      class="plugin no-underline">
+      class="plugin plain track__plugin">
       <img src={`/plugins/${props.src}`} class="logo" alt={`${props.name} Logo`} />
       <span class="name">{props.name}</span>
     </a>

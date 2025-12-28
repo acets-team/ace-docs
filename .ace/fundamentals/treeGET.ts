@@ -16,6 +16,9 @@ export const treeGET = {
             }
           }
         },
+        "post-groups": {
+          "key": "apiGetPostGroups"
+        },
         "search": {
           "param": {
             "name": "query",

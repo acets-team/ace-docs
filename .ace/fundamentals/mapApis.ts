@@ -27,6 +27,12 @@ export const mapApis = {
     resolver: () => import("../../src/api/apiGetPost").then((m) => m.resolver),
     buildUrl: (props?: MapBuildUrlProps) => buildUrl({ ...props, segments: [["api"],["post"],["slug","r"]] }),
   },
+  'apiGetPostGroups': {
+    api: () => import("../../src/api/apiGetPostGroups").then((m) => m.default),
+    info: () => import("../../src/api/apiGetPostGroups").then((m) => m.info),
+    resolver: () => import("../../src/api/apiGetPostGroups").then((m) => m.resolver),
+    buildUrl: (props?: MapBuildUrlProps) => buildUrl({ ...props, segments: [["api"],["post-groups"]] }),
+  },
   'apiReadableStream': {
     api: () => import("../../src/api/apiReadableStream").then((m) => m.default),
     info: () => import("../../src/api/apiReadableStream").then((m) => m.info),
@@ -44,5 +50,11 @@ export const mapApis = {
     info: () => import("../../src/api/apiSearch").then((m) => m.info),
     resolver: () => import("../../src/api/apiSearch").then((m) => m.resolver),
     buildUrl: (props?: MapBuildUrlProps) => buildUrl({ ...props, segments: [["api"],["search"],["query","r"]] }),
+  },
+  'apiSetTheme': {
+    api: () => import("../../src/api/apiSetTheme").then((m) => m.default),
+    info: () => import("../../src/api/apiSetTheme").then((m) => m.info),
+    resolver: () => import("../../src/api/apiSetTheme").then((m) => m.resolver),
+    buildUrl: (props?: MapBuildUrlProps) => buildUrl({ ...props, segments: [["api"],["theme"],["theme","r"]] }),
   },
 } as const

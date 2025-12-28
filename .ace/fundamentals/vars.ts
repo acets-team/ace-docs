@@ -66,8 +66,5 @@ export const queryType = new Enums(['stream', 'direct', 'maySetCookies', 'seo'])
 /** When we throw issues from `valibot/zod` they can be found @ `Error.cause[issuesErrorCauseKey]` */
 export const issuesErrorCauseKey = '_issues'
 
-/** If passing data as a readable stream there is no filename option so we can pass the key w/in this header */
-export const r2KeyHeader = 'x-ace-r2-key'
-
 /** Header to pass custom meta data to an r2 worker */
 export const r2CustomMetadataHeader = 'x-ace-r2-custom-metadata'

@@ -1,16 +1,18 @@
 import { Show } from 'solid-js'
+import { Load } from '@ace/load'
 import { Nav } from '@src/Nav/Nav'
 import { Stream } from '@ace/stream'
 import { Hero } from '@src/Hero/Hero'
 import { Posts } from '@src/post/Posts'
 import { Footer } from '@src/Footer/Footer'
-import { Search } from '@src/_Search/Search'
+import { Search } from '@src/Search/Search'
 import { useAtoms } from '@src/store/atoms'
 import { RootLayout } from '@ace/rootLayout'
 import { Partners } from '@src/post/Partners'
 import { OnThisPage } from '@src/post/OnThisPage'
 import { Collaborate } from '@src/post/Collaborate'
 import apiGetPartners from '@src/api/apiGetPartners'
+import apiGetPostGroups from '@src/api/apiGetPostGroups'
 
 
 export default new RootLayout((scope) => {
@@ -18,8 +20,14 @@ export default new RootLayout((scope) => {
 
   const partners = new Stream({
     fn: apiGetPartners,
-    queryKey: 'partners',
-    atom: [baseAtoms, 'partners']
+    queryKey: 'apiGetPartners',
+    atom: [baseAtoms, 'apiGetPartners']
+  })
+
+  const postGroups = new Load({
+    fn: apiGetPostGroups,
+    queryKey: 'apiGetPostGroups',
+    atom: [baseAtoms, 'apiGetPostGroups']
   })
 
   return <>
@@ -31,7 +39,7 @@ export default new RootLayout((scope) => {
 
     <div class="post">
       <aside classList={{ visible: baseAtoms.store.isSidenavVisible }}>
-        <Posts />
+        <Posts postGroups={postGroups} />
         <OnThisPage baseAtoms={baseAtoms} />
 
         <section class="unity">

@@ -103,7 +103,7 @@ export const Search = feComponent((props: { baseAtoms: BaseAtoms }) => {
   }
 
   return <>
-    <Modal id="search">
+    <Modal id="search" variant="top">
       <div class="input">
         <input
           onInput={(e) => onSearch(e.currentTarget.value)}

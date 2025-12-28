@@ -1,9 +1,4 @@
 #ace-modal--search {
-  .ace-modal__content {
-    margin-top: 9rem;
-    align-items: start;
-  }
-
   .ace-modal__modal {
     .input {
       position: relative;
